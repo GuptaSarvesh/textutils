@@ -6,12 +6,12 @@ import { useState } from 'react';
 import Alert from './Components/Alert';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
+  Routes,
   Link
 } from "react-router-dom";
 
-
+/*Switch is not working so we used Routes*/
 
 function App() {
 
@@ -66,18 +66,15 @@ function App() {
 {/* <Navbar title="TextUtils" aboutText="About Text Utils"/> */}
 {/* <Navbar /> */}
 <Router>
-<Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
+<Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} aboutText='About' />
 <Alert alert={alert}/>
 <div className="container my-3">
 
-<Switch>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          <Route exact path="/">
-          <TextForm heading="Add your text here" mode={mode} showAlert={showAlert}/> 
-          </Route>
-</Switch>
+<Routes>
+          <Route exact path="/about" element={<About/>} />
+          <Route exact path="/" 
+          element={<TextForm heading="Add your text here" mode={mode} showAlert={showAlert}/>} />
+</Routes>
 </div>
 </Router>
 
